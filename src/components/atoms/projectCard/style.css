@@ -1,0 +1,55 @@
+.card-wrapper {
+  margin: 20px 0px 0px 0px;
+}
+.project-card {
+  width: 100%;
+  height: 200px;
+  border-radius: 7px;
+  background-color: var(--cultured);
+  border: 1px solid var(--platinum);
+  margin-bottom: 10px;
+}
+.flex-title {
+  color: var(--smokyBlack);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+.link-title {
+  color: var(--smokyBlack);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+/*Bullet color*/
+
+.giallo {
+  width: 10px;
+  height: 10px;
+  margin-right: 7px;
+  background-color: var(--maximumYellow);
+  border-radius: 100px;
+}
+.rosso {
+  width: 10px;
+  height: 10px;
+  margin-right: 7px;
+  background-color: var(--red);
+  border-radius: 100px;
+}
+
+.verde {
+  width: 10px;
+  height: 10px;
+  margin-right: 7px;
+  background-color: var(--verdeAcqua);
+  border-radius: 100px;
+}
+.blu {
+  width: 10px;
+  height: 10px;
+  margin-right: 7px;
+  background-color: var(--steelBlue);
+  border-radius: 100px;
+}

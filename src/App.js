@@ -1,25 +1,66 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
 
-function App() {
+//antd import
+import "./theme.css";
+
+//firestore
+//import db from "./firebase";
+
+//components
+import {
+  AddProjectBar,
+  //Footer,
+  Header,
+  ProjectCard,
+  SearchBarTitle,
+} from "./components/index";
+
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { CodeEditor, Designer, DashboardMain } from "./pages/index";
+
+const App = () => {
+  const [project, setProject] = useState([]);
+  const [state, setState] = useState("SearchBarTitle");
+
+  const listProjectCard = project.map((prop) => (
+    <ProjectCard
+      title={prop.title}
+      color={prop.color}
+      id={prop.id}
+      key={prop.id}
+    />
+  ));
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router>
+        <Header />
+
+        <div>
+          {state === "SearchBarTitle" && (
+            <SearchBarTitle changeBar={() => setState("AddProjectBar")} />
+          )}
+          {state === "AddProjectBar" && (
+            <AddProjectBar
+              addProject={(newProject) => setProject([...project, newProject])}
+              changeBar={() => setState("SearchBarTitle")}
+            />
+          )}
+        </div>
+        <Switch>
+          <Route path="/code-editor">
+            <CodeEditor />
+          </Route>
+          <Route path="/designer">
+            <Designer />
+          </Route>
+          <Route exact path="/">
+            <DashboardMain project={listProjectCard} />
+          </Route>
+        </Switch>
+        {/* <Footer /> */}
+      </Router>
     </div>
   );
-}
+};
 
 export default App;

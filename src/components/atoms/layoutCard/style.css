@@ -1,0 +1,24 @@
+.layout-card {
+  width: 185px;
+  height: 130px;
+  border-radius: 7px;
+  background-color: var(--cultured);
+  border: 1px solid var(--platinum);
+  margin-bottom: 10px;
+}
+.flex-title-vertical {
+  color: var(--smokyBlack);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 130px;
+}
+.component-title {
+  color: var(--smokyBlack);
+  margin-top: 10px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}

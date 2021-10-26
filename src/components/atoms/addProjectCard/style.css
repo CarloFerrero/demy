@@ -1,0 +1,24 @@
+.add-p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-add-p {
+  border-radius: 100%;
+  border: 1px solid var(--platinum);
+  background-color: var(--cultured);
+  width: 40px;
+  height: 40px;
+  color: var(--smokyblack);
+  font-size: 0.95rem;
+}
+.btn-add-p-a {
+  border-radius: 100%;
+  border: none;
+  background-color: var(--cultured);
+  width: 40px;
+  height: 40px;
+  color: var(--smokyblack);
+  font-size: 0.95rem;
+  cursor: pointer;
+}

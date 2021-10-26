@@ -1,0 +1,9 @@
+.line {
+  border: none;
+  background-color: var(--platinum);
+  height: 1px;
+}
+.sec-title {
+  font-weight: 500;
+  margin-bottom: 20px;
+}
