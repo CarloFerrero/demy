@@ -9,7 +9,7 @@ import "./theme.css";
 //components
 import {
   AddProjectBar,
-  //Footer,
+  Footer,
   Header,
   ProjectCard,
   SearchBarTitle,
@@ -57,7 +57,7 @@ const App = () => {
             <DashboardMain project={listProjectCard} />
           </Route>
         </Switch>
-        {/* <Footer /> */}
+        <Footer />
       </Router>
     </div>
   );

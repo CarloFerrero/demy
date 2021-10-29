@@ -4,8 +4,21 @@
 .space {
   height: 20px;
 }
+.space40 {
+  height: 40px;
+}
 .project-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 20px;
+}
+.component-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  column-gap: 20px;
+}
+.layout-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   column-gap: 20px;
 }

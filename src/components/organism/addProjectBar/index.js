@@ -4,31 +4,32 @@ import "./style.css";
 //component
 import { SelectColor } from "../../index";
 
+//firestore
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import db from "../../../firebase";
+
 //antd design
-import { Button } from "antd";
+import { Button, Input } from "antd";
 
 const AddProjectBar = (props) => {
-  const [project, setProject] = useState([]);
-  const [id, setID] = useState(0);
   const [Color, setColor] = useState("");
-  const refTitle = useRef();
-  const handleID = () => {
-    setID(id + 1);
+  const [Title, setTitle] = useState("");
+  const inputEl = useRef();
+
+  const onChange = (e) => {
+    setTitle(e.target.value);
   };
+
   const addColor = (color) => {
     setColor(color);
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    handleID();
-    const newProject = {
-      id: id,
-      title: refTitle.current.value,
-      color: Color,
-    };
-    setProject([...project, newProject]);
-    refTitle.current.value = "";
-    props.addProject(newProject);
+
+  const handleSubmit = async () => {
+    const titolo = inputEl.current.input.value;
+    const colore = Color;
+    const collectionRef = collection(db, "Progetti");
+    const payload = { titolo, colore, timestamp: serverTimestamp() };
+    await addDoc(collectionRef, payload);
     props.changeBar();
   };
 
@@ -36,24 +37,25 @@ const AddProjectBar = (props) => {
     <div className="search-main">
       <form className="form-project">
         <div className="section-title-wrapper">
-          <input
-            ref={refTitle}
-            className="new-project-input"
+          <Input
+            ref={inputEl}
+            value={Title}
+            onChange={onChange}
             placeholder="Project name"
           />
         </div>
+
         <div className="addProject">
           <div>
             <SelectColor addColor={addColor} />
           </div>
           <div className="aggiungi-progetto">
-            <Button variant="outlined" type="submit">
+            <Button variant="outlined" type="submit" onClick={handleSubmit}>
               Aggiungi progetto
             </Button>
           </div>
         </div>
       </form>
-      <div></div>
     </div>
   );
 };

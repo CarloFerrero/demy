@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 
-const ComponentCard = () => {
+const ComponentCard = (props) => {
   return (
     <div className="card-wrapper">
       <div className="component-card">
@@ -35,7 +35,7 @@ const ComponentCard = () => {
             </svg>
           </div>
           <a href="www.google.com" target="_blank" className="component-title">
-            Tuttofood
+            {props.title}
           </a>
         </div>
       </div>

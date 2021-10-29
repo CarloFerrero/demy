@@ -4,22 +4,19 @@ import "./style.css";
 //firestore
 import { onSnapshot, collection, query, orderBy } from "firebase/firestore";
 import db from "../../../firebase";
-import { handleClick, handleEdit, handleDelete } from "../../../utils";
+import { handleClick } from "../../../utils";
 
 //components
-import { Dot, SelectOptionTitle } from "../../index";
+import { Dot } from "../../index";
 
 //antd design
-import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
+import { PlusOutlined } from "@ant-design/icons";
 import { Select, Button } from "antd";
 const { Option } = Select;
-function handleChange(value) {
-  console.log(`selected ${value}`);
-}
 
-const SelectColor = () => {
+const SelectColor = (props) => {
   const [Colors, setColors] = useState([]);
-
+  const [ColorsValue, setColorsValue] = useState("");
   useEffect(() => {
     const q = query(collection(db, "Colors"), orderBy("timestamp", "desc"));
     const unsub = onSnapshot(q, (snapshot) => {
@@ -28,10 +25,15 @@ const SelectColor = () => {
     return unsub;
   }, []);
 
+  const handleChange = (value) => {
+    setColorsValue(value);
+  };
+  props.addColor(ColorsValue);
+
   return (
     <div class="flex-center">
       <Select
-        style={{ width: 240 }}
+        style={{ width: 200 }}
         placeholder="Add color"
         onChange={handleChange}
         dropdownRender={(menu) => (
@@ -44,7 +46,7 @@ const SelectColor = () => {
         )}
       >
         {Colors.map((item) => (
-          <Option value={item.nome}>
+          <Option title={item.nome} value={item.color}>
             <Dot color={item.color} />
             {item.nome}
           </Option>
