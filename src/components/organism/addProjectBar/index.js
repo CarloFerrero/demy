@@ -1,8 +1,9 @@
 import React, { useState, useRef } from "react";
 import "./style.css";
+import "../../../theme.css";
 
 //component
-import { SelectColor } from "../../index";
+import { SelectColor, UploadImage } from "../../index";
 
 //firestore
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
@@ -14,6 +15,8 @@ import { Button, Input } from "antd";
 const AddProjectBar = (props) => {
   const [Color, setColor] = useState("");
   const [Title, setTitle] = useState("");
+  const [BgImg, setBgImg] = useState("");
+
   const inputEl = useRef();
 
   const onChange = (e) => {
@@ -24,11 +27,16 @@ const AddProjectBar = (props) => {
     setColor(color);
   };
 
+  const addBgImg = (img) => {
+    setBgImg(img);
+  };
+
   const handleSubmit = async () => {
     const titolo = inputEl.current.input.value;
     const colore = Color;
+    const bgImg = BgImg;
     const collectionRef = collection(db, "Progetti");
-    const payload = { titolo, colore, timestamp: serverTimestamp() };
+    const payload = { titolo, colore, bgImg, timestamp: serverTimestamp() };
     await addDoc(collectionRef, payload);
     props.changeBar();
   };
@@ -46,6 +54,9 @@ const AddProjectBar = (props) => {
         </div>
 
         <div className="addProject">
+          <div className="mr15">
+            <UploadImage addBgImg={addBgImg} />
+          </div>
           <div>
             <SelectColor addColor={addColor} />
           </div>

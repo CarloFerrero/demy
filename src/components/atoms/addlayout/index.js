@@ -11,7 +11,7 @@ const AddLayout = (props) => {
     <div>
       <div className="main">
         <div className="flex-horizontal">
-          <h2>{props.title}</h2>
+          <h2 className="sec-title">{props.title}</h2>
           <Button variant="outlined" type="submit" onClick={ClickLayout}>
             Aggiungi layout
           </Button>

@@ -7,7 +7,6 @@ const Dot = (props) => {
     borderRadius: "50%",
     backgroundColor: props.color,
     display: "inline-block",
-    marginRight: "10px",
   };
   return <span style={style}></span>;
 };

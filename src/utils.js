@@ -51,8 +51,9 @@ export const DeleteProgetti = async (id) => {
 //Component add - edit - delete
 export const ClickComponent = async () => {
   const titolo = prompt("add project title");
+  const projectID = prompt("add projectID");
   const collectionRef = collection(db, "Component");
-  const payload = { titolo, timestamp: serverTimestamp() };
+  const payload = { titolo, projectID, timestamp: serverTimestamp() };
   await addDoc(collectionRef, payload);
 };
 export const EditComponent = async (id) => {
@@ -68,9 +69,10 @@ export const DeleteComponent = async (id) => {
 
 //Layout add - edit - delete
 export const ClickLayout = async () => {
+  const projectID = prompt("add projectID");
   const titolo = prompt("add project title");
   const collectionRef = collection(db, "Layout");
-  const payload = { titolo, timestamp: serverTimestamp() };
+  const payload = { titolo, projectID, timestamp: serverTimestamp() };
   await addDoc(collectionRef, payload);
 };
 export const EditLayout = async (id) => {
@@ -81,5 +83,25 @@ export const EditLayout = async (id) => {
 };
 export const DeleteLayout = async (id) => {
   const docRef = doc(db, "Layout", id);
+  await deleteDoc(docRef);
+};
+
+//Campaign add - edit - delete
+export const ClickCampaign = async () => {
+  const projectID = prompt("add project ID");
+  const code = prompt("add project code");
+  const titolo = prompt("add project title");
+  const collectionRef = collection(db, "campagne");
+  const payload = { titolo, projectID, code, timestamp: serverTimestamp() };
+  await addDoc(collectionRef, payload);
+};
+export const EditCampaign = async (id) => {
+  const titolo = prompt("add project title");
+  const docRef = doc(db, "campagne", id);
+  const payload = { titolo };
+  updateDoc(docRef, payload);
+};
+export const DeleteCampaign = async (id) => {
+  const docRef = doc(db, "campagne", id);
   await deleteDoc(docRef);
 };

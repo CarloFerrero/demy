@@ -47,10 +47,11 @@ const DashboardMain = (props) => {
     <div>
       <div className="space"></div>
       <SectionTitle title="Progetti" />
+      <hr className="line" />
       <div className="main">
         <div className="project-wrapper">
           {Progetti.map((item) => (
-            <ProjectCard title={item.titolo} color={item.colore} />
+            <ProjectCard title={item.titolo} color={item.colore} id={item.id} />
           ))}
         </div>
       </div>

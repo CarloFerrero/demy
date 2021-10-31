@@ -1,4 +1,7 @@
 import React from "react";
+import "./style.css";
+import "../../../theme.css";
+
 import { Upload, message, Button } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 
@@ -24,7 +27,7 @@ const UploadImage = () => {
   return (
     <div>
       <Upload {...props}>
-        <Button icon={<UploadOutlined />}>Click to Upload</Button>
+        <Button icon={<UploadOutlined />}>Aggiungi immagine</Button>
       </Upload>
     </div>
   );

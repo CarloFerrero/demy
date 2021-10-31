@@ -12,3 +12,6 @@
   display: flex;
   align-items: center;
 }
+.color-label {
+  margin-left: 5px;
+}

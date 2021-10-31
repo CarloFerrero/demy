@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
+import "../../../theme.css";
 
 //firestore
 import { onSnapshot, collection, query, orderBy } from "firebase/firestore";
@@ -30,12 +31,21 @@ const SelectColor = (props) => {
   };
   props.addColor(ColorsValue);
 
+  const children = Colors.map((item) => (
+    <Option title={item.nome} value={item.color}>
+      <div className="flex-center">
+        <Dot color={item.color} />
+        <div className="color-label">{item.nome}</div>
+      </div>
+    </Option>
+  ));
   return (
     <div class="flex-center">
       <Select
         style={{ width: 200 }}
         placeholder="Add color"
         onChange={handleChange}
+        autoClearSearchValue={true}
         dropdownRender={(menu) => (
           <div>
             {menu}
@@ -44,13 +54,9 @@ const SelectColor = (props) => {
             </Button>
           </div>
         )}
+        allowClear
       >
-        {Colors.map((item) => (
-          <Option title={item.nome} value={item.color}>
-            <Dot color={item.color} />
-            {item.nome}
-          </Option>
-        ))}
+        {children}
       </Select>
     </div>
   );
