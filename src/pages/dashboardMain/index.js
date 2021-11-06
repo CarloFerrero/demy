@@ -51,7 +51,13 @@ const DashboardMain = (props) => {
       <div className="main">
         <div className="project-wrapper">
           {Progetti.map((item) => (
-            <ProjectCard title={item.titolo} color={item.colore} id={item.id} />
+            <ProjectCard
+              title={item.titolo}
+              color={item.colore}
+              id={item.id}
+              bgImg={item.bgImg}
+              key={item.id}
+            />
           ))}
         </div>
       </div>
@@ -60,7 +66,7 @@ const DashboardMain = (props) => {
       <div className="main">
         <div className="component-wrapper">
           {Component.map((item) => (
-            <ComponentCard title={item.titolo} />
+            <ComponentCard title={item.titolo} key={item.id} />
           ))}
         </div>
       </div>
@@ -69,7 +75,7 @@ const DashboardMain = (props) => {
       <div className="main">
         <div className="layout-wrapper">
           {Layout.map((item) => (
-            <LayoutCard title={item.titolo} />
+            <LayoutCard title={item.titolo} key={item.id} />
           ))}
         </div>
       </div>

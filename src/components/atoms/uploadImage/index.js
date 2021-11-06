@@ -1,34 +1,70 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
 import "../../../theme.css";
 
-import { Upload, message, Button } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
+//Firebase storage
+import { storage } from "../../../firebase";
+import {
+  ref,
+  uploadBytes,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 
-const UploadImage = () => {
-  const props = {
-    name: "file",
-    action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-    headers: {
-      authorization: "authorization-text",
-    },
-    onChange(info) {
-      if (info.file.status !== "uploading") {
-        console.log(info.file, info.fileList);
-      }
-      if (info.file.status === "done") {
-        message.success(`${info.file.name} file uploaded successfully`);
-      } else if (info.file.status === "error") {
-        message.error(`${info.file.name} file upload failed.`);
-      }
-    },
+//ant
+import { Upload, Button, message } from "antd";
+import { UploadOutlined, CheckCircleTwoTone } from "@ant-design/icons";
+
+//axios
+import axios from "axios";
+
+const UploadImage = (props) => {
+  const [imageName, setImageName] = useState("");
+  const [btnName, setBtnName] = useState("Upload file");
+
+  const inputStyle = {
+    display: "none",
+  };
+  const hiddenFileInput = React.useRef(null);
+  const handleClick = (event) => {
+    hiddenFileInput.current.click();
   };
 
+  async function onChange(e) {
+    const file = e.target.files[0];
+    const storageRef = ref(storage, `campaignImage/${file.name}`);
+    const nameRef = file.name;
+    const uploadTask = uploadBytesResumable(storageRef, file);
+    await uploadBytes(storageRef, file);
+    const imageUrl = await getDownloadURL(storageRef);
+    //pass url and name
+    setImageName(nameRef);
+    props.addBgImg(imageUrl);
+    setBtnName("Change image");
+    uploadTask.on(
+      (snapshot) => {
+        message.success(`${file.name} è stato caricato correttamente`);
+      },
+      (error) => {
+        message.error(`${file.name} non si è caricato`);
+      }
+    );
+  }
+
   return (
-    <div>
-      <Upload {...props}>
-        <Button icon={<UploadOutlined />}>Aggiungi immagine</Button>
-      </Upload>
+    <div className="flex">
+      <div className="mr15">{imageName}</div>
+      <div>
+        <Button onClick={handleClick} icon={<UploadOutlined />}>
+          {btnName}
+        </Button>
+      </div>
+      <input
+        style={inputStyle}
+        type="file"
+        onChange={onChange}
+        ref={hiddenFileInput}
+      />
     </div>
   );
 };

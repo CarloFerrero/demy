@@ -91,17 +91,17 @@ export const ClickCampaign = async () => {
   const projectID = prompt("add project ID");
   const code = prompt("add project code");
   const titolo = prompt("add project title");
-  const collectionRef = collection(db, "campagne");
+  const collectionRef = collection(db, "Campagne");
   const payload = { titolo, projectID, code, timestamp: serverTimestamp() };
   await addDoc(collectionRef, payload);
 };
 export const EditCampaign = async (id) => {
   const titolo = prompt("add project title");
-  const docRef = doc(db, "campagne", id);
+  const docRef = doc(db, "Campagne", id);
   const payload = { titolo };
   updateDoc(docRef, payload);
 };
 export const DeleteCampaign = async (id) => {
-  const docRef = doc(db, "campagne", id);
+  const docRef = doc(db, "Campagne", id);
   await deleteDoc(docRef);
 };

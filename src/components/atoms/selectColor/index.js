@@ -32,7 +32,7 @@ const SelectColor = (props) => {
   props.addColor(ColorsValue);
 
   const children = Colors.map((item) => (
-    <Option title={item.nome} value={item.color}>
+    <Option title={item.nome} value={item.color} key={item.id}>
       <div className="flex-center">
         <Dot color={item.color} />
         <div className="color-label">{item.nome}</div>
@@ -40,7 +40,7 @@ const SelectColor = (props) => {
     </Option>
   ));
   return (
-    <div class="flex-center">
+    <div className="flex-center">
       <Select
         style={{ width: 200 }}
         placeholder="Add color"

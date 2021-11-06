@@ -11,7 +11,7 @@ import db from "./firebase";
 import {
   AddProjectBar,
   Footer,
-  Header,
+  //Header,
   ProjectCard,
   SearchBarTitle,
 } from "./components/index";
@@ -76,12 +76,9 @@ const App = () => {
           </Route>
           {handleProjectID.map((projectID) => (
             <Route exact path={"/" + projectID.id}>
-              <DashboardSingle projectID={projectID.id} />
+              <DashboardSingle projectID={projectID.id} key={projectID.id} />
             </Route>
           ))}
-          <Route exact path="/ciao">
-            <DashboardSingle />
-          </Route>
         </Switch>
         <Footer />
       </Router>

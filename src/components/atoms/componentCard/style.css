@@ -1,6 +1,4 @@
 .component-card {
-  width: 120px;
-  height: 120px;
   border-radius: 7px;
   background-color: var(--cultured);
   border: 1px solid var(--platinum);
@@ -13,7 +11,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 120px;
 }
 .component-title {
   color: var(--smokyBlack);

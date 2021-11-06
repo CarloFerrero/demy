@@ -1,10 +1,7 @@
 .layout-card {
-  width: 185px;
-  height: 130px;
   border-radius: 7px;
   background-color: var(--cultured);
   border: 1px solid var(--platinum);
-  margin-bottom: 10px;
 }
 .flex-title-vertical {
   color: var(--smokyBlack);
