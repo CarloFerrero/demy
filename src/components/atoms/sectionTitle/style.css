@@ -5,5 +5,9 @@
 }
 .sec-title {
   font-weight: 500;
+}
+.title-wrapper {
+  display: flex;
+  align-items: center;
   margin-bottom: 20px;
 }

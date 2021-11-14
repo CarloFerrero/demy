@@ -1,46 +1,95 @@
-import React from "react";
+import React, { useState } from "react";
+import { Dot } from "../../index";
+import { useHistory } from "react-router-dom";
 import "./style.css";
 
+//ant
+import { Card, Popover } from "antd";
+import {
+  EditOutlined,
+  EllipsisOutlined,
+  DeleteOutlined,
+  CopyOutlined,
+  CloseCircleOutlined,
+} from "@ant-design/icons";
+
+//utils
+import { EditLayout, copyToClipboard, DeleteLayout } from "../../../utils";
+
+const { Meta } = Card;
+
 const LayoutCard = (props) => {
+  const [hover, setHover] = useState(false);
+
+  let style = {
+    display: "flex",
+    alignItems: "center",
+    color: "#161616",
+    marginTop: "0px",
+  };
+  if (hover) {
+    style = {
+      display: "flex",
+      alignItems: "center",
+      color: "#161616",
+      marginTop: "0px",
+      cursor: "pointer",
+      //more Hover effect styles
+    };
+  }
+
+  let projectstyle = {
+    borderRadius: "16px",
+    color: "#161616",
+    border: "1px solid #e1e1e1",
+    backgroundColor: "#fafafa",
+    transition: "0.2s",
+  };
+  if (hover) {
+    projectstyle = {
+      borderRadius: "16px",
+      color: "#161616",
+      border: `1px solid ${props.color}`,
+      backgroundColor: `${props.color}15`,
+
+      //more Hover effect styles
+    };
+  }
+
+  const history = useHistory();
+  const routeChange = (pat) => {
+    let path = pat;
+    history.push(path);
+  };
+
   return (
     <div className="card-wrapper">
       <div className="layout-card">
-        <div className="flex-title-vertical">
-          <div className="icon-box">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="150"
-              height="75"
-              viewBox="0 0 150 75"
-            >
-              <g
-                id="Raggruppa_133"
-                data-name="Raggruppa 133"
-                transform="translate(-55 -1018.5)"
-              >
-                <rect
-                  id="Rettangolo_211"
-                  data-name="Rettangolo 211"
-                  width="150"
-                  height="75"
-                  transform="translate(55 1018.5)"
-                  fill="#e4e4e4"
-                />
-                <rect
-                  id="Rettangolo_212"
-                  data-name="Rettangolo 212"
-                  width="126"
-                  height="75"
-                  transform="translate(67 1018.5)"
-                  fill="#f8f8f8"
-                />
-              </g>
-            </svg>
+        <Card
+          style={projectstyle}
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+        >
+          <div className="headCard">
+            <CopyOutlined
+              onClick={() => navigator.clipboard.writeText(props.code)}
+            />
+            <DeleteOutlined
+              key="setting"
+              onClick={() => DeleteLayout(props.id)}
+            />
           </div>
-          <a href="www.google.com" target="_blank" className="component-title">
-            {props.title}
-          </a>
-        </div>
+          <div className="flex mt40">
+            <div className="mr5">
+              <Dot color={props.color} />
+            </div>
+            <Meta
+              style={style}
+              title={props.title}
+              onClick={() => routeChange(props.id)}
+            />
+          </div>
+        </Card>
       </div>
     </div>
   );

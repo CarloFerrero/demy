@@ -14,6 +14,7 @@ import {
   ComponentCard,
   LayoutCard,
 } from "../../components/index";
+import { FireTwoTone } from "@ant-design/icons";
 
 const DashboardMain = (props) => {
   const [Progetti, setProgetti] = useState([]);
@@ -46,7 +47,10 @@ const DashboardMain = (props) => {
   return (
     <div>
       <div className="space"></div>
-      <SectionTitle title="Progetti" />
+      <SectionTitle
+        title="Progetti"
+        icon={<FireTwoTone twoToneColor="#4353ff" className="icon-title" />}
+      />
       <hr className="line" />
       <div className="main">
         <div className="project-wrapper">
@@ -66,7 +70,13 @@ const DashboardMain = (props) => {
       <div className="main">
         <div className="component-wrapper">
           {Component.map((item) => (
-            <ComponentCard title={item.titolo} key={item.id} />
+            <ComponentCard
+              title={item.titolo}
+              key={item.id}
+              id={item.id}
+              color={item.colore}
+              code={item.code}
+            />
           ))}
         </div>
       </div>
@@ -75,7 +85,13 @@ const DashboardMain = (props) => {
       <div className="main">
         <div className="layout-wrapper">
           {Layout.map((item) => (
-            <LayoutCard title={item.titolo} key={item.id} />
+            <LayoutCard
+              title={item.titolo}
+              key={item.id}
+              id={item.id}
+              color={item.colore}
+              code={item.code}
+            />
           ))}
         </div>
       </div>

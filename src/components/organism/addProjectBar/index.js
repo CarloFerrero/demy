@@ -11,6 +11,7 @@ import db from "../../../firebase";
 
 //antd design
 import { Button, Input } from "antd";
+import { CloseCircleTwoTone } from "@ant-design/icons";
 
 const AddProjectBar = (props) => {
   const [Color, setColor] = useState("");
@@ -61,9 +62,21 @@ const AddProjectBar = (props) => {
             <SelectColor addColor={addColor} />
           </div>
           <div className="aggiungi-progetto">
-            <Button variant="outlined" type="submit" onClick={handleSubmit}>
+            <Button
+              className="btn"
+              variant="outlined"
+              type="submit"
+              onClick={handleSubmit}
+            >
               Aggiungi progetto
             </Button>
+            <CloseCircleTwoTone
+              twoToneColor="#4353ff"
+              className="ml15"
+              onClick={() => {
+                props.changeBar();
+              }}
+            />
           </div>
         </div>
       </form>

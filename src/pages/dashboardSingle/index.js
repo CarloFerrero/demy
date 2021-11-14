@@ -9,28 +9,19 @@ import db from "../../firebase";
 import {
   AddCampaign,
   CampaignCard,
-  SliderHome,
+  //SliderHome,
   AddComponent,
   AddLayout,
   ComponentCard,
   LayoutCard,
 } from "../../components/index";
 
+//ant breadcrumbs
+import { Breadcrumb } from "antd";
+import { HomeOutlined } from "@ant-design/icons";
+
 const DashboardSingle = (props) => {
-  const [Project, setProject] = useState([]);
-
-  useEffect(() => {
-    const q = query(collection(db, "campagne"), orderBy("timestamp", "asc"));
-    const unsub = onSnapshot(q, (snapshot) => {
-      setProject(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    });
-    return unsub;
-  }, []);
-
-  const filteredProject = Project.filter(
-    (item) => item.projectID === props.projectID
-  );
-
+  const title = props.projectTitle;
   const [Component, setComponent] = useState([]);
   useEffect(() => {
     const q = query(collection(db, "Component"), orderBy("timestamp", "asc"));
@@ -57,18 +48,45 @@ const DashboardSingle = (props) => {
     (item) => item.projectID === props.projectID
   );
 
+  const [Campagne, setCampagne] = useState([]);
+  useEffect(() => {
+    const q = query(collection(db, "Campagne"), orderBy("timestamp", "asc"));
+    const unsub = onSnapshot(q, (snapshot) => {
+      setCampagne(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    });
+    return unsub;
+  }, []);
+
+  const filteredCampagne = Campagne.filter(
+    (item) => item.projectID === props.projectID
+  );
+
   return (
     <div>
-      <SliderHome />
+      {/*<SliderHome />*/}
+      <div className="bredcrumbBar">
+        <Breadcrumb>
+          <Breadcrumb.Item href="http://localhost:3000">
+            <HomeOutlined />
+            <span>Dashboard main</span>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item href="">
+            <span>{title}</span>
+          </Breadcrumb.Item>
+        </Breadcrumb>
+      </div>
       <div className="space"></div>
       <AddCampaign />
       <div className="main">
         <div className="project-wrapper">
-          {filteredProject.map((item) => (
+          {filteredCampagne.map((item) => (
             <CampaignCard
               title={item.titolo}
-              color={item.colore}
               id={item.id}
+              key={item.id}
+              code={item.code}
+              category={item.category}
+              color={item.colore}
             />
           ))}
         </div>
@@ -78,7 +96,13 @@ const DashboardSingle = (props) => {
       <div className="main">
         <div className="component-wrapper">
           {filteredComponent.map((item) => (
-            <ComponentCard title={item.titolo} />
+            <ComponentCard
+              title={item.titolo}
+              key={item.id}
+              id={item.id}
+              color={item.colore}
+              code={item.code}
+            />
           ))}
         </div>
       </div>
@@ -87,7 +111,13 @@ const DashboardSingle = (props) => {
       <div className="main">
         <div className="layout-wrapper">
           {filteredLayout.map((item) => (
-            <LayoutCard title={item.titolo} />
+            <LayoutCard
+              title={item.titolo}
+              key={item.id}
+              id={item.id}
+              color={item.colore}
+              code={item.code}
+            />
           ))}
         </div>
       </div>

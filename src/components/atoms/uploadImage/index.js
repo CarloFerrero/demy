@@ -12,11 +12,8 @@ import {
 } from "firebase/storage";
 
 //ant
-import { Upload, Button, message } from "antd";
-import { UploadOutlined, CheckCircleTwoTone } from "@ant-design/icons";
-
-//axios
-import axios from "axios";
+import { Button, message } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
 
 const UploadImage = (props) => {
   const [imageName, setImageName] = useState("");

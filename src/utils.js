@@ -85,6 +85,10 @@ export const DeleteLayout = async (id) => {
   const docRef = doc(db, "Layout", id);
   await deleteDoc(docRef);
 };
+export const copyToClipboard = async (id) => {
+  const docRef = doc(db, "Layout", id);
+  await deleteDoc(docRef);
+};
 
 //Campaign add - edit - delete
 export const ClickCampaign = async () => {
@@ -103,5 +107,24 @@ export const EditCampaign = async (id) => {
 };
 export const DeleteCampaign = async (id) => {
   const docRef = doc(db, "Campagne", id);
+  await deleteDoc(docRef);
+};
+
+//Code add - edit - delete
+export const ClickCode = async (codeValue) => {
+  const projectID = prompt("add project ID");
+  const code = codeValue;
+  const collectionRef = collection(db, "Code");
+  const payload = { projectID, code, timestamp: serverTimestamp() };
+  await addDoc(collectionRef, payload);
+};
+export const EditCode = async (id) => {
+  const titolo = prompt("add project title");
+  const docRef = doc(db, "Code", id);
+  const payload = { titolo };
+  updateDoc(docRef, payload);
+};
+export const DeleteCode = async (id) => {
+  const docRef = doc(db, "Code", id);
   await deleteDoc(docRef);
 };

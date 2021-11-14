@@ -36,6 +36,14 @@ code {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
+.dark {
+  background-color: #f4f4f4;
+  padding: 2%;
+  height: 100vh;
+  position: fixed;
+  width: 100%;
+}
+
 /* space and margin */
 .mr5 {
   margin-right: 5px;
@@ -43,9 +51,55 @@ code {
 .mr15 {
   margin-right: 15px;
 }
+.ml5 {
+  margin-left: 5px;
+}
+.ml15 {
+  margin-left: 15px;
+}
+.mb5 {
+  margin-bottom: 5px;
+}
+.mt40 {
+  margin-top: 40px;
+}
 
 /* flex */
 .flex {
   display: flex;
   align-items: center;
+}
+
+/*width*/
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/*track*/
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/*thumb*/
+::-webkit-scrollbar-thumb {
+  background: rgb(0, 0, 0);
+  box-shadow: rgb(0, 0, 0) 1px 0px;
+}
+
+.ant-btn-primary {
+  color: #fff;
+  border-color: #4353ff;
+  background: #4353ff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+}
+.ant-btn-link {
+  color: #4353ff;
+  border-color: #4353ff;
+  background: #4353ff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
 }

@@ -4,14 +4,13 @@
   bottom: 0px;
   width: 100%;
   background: #999;
-  margin-top: 80px;
 }
 
 .foot-container {
   background-color: var(--smokyBlack);
   display: flex;
   justify-content: space-between;
-  padding: 0% 6% 0% 6%;
+  padding: 0% 2% 0% 2%;
 }
 .col-container {
   width: 30%;

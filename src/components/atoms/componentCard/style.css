@@ -14,8 +14,20 @@
 }
 .component-title {
   color: var(--smokyBlack);
-  margin-top: 10px;
+
   text-decoration: none;
   display: flex;
   align-items: center;
+}
+.PopoverContent {
+  width: 80px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.headCard {
+  display: flex;
+  align-items: top;
+  justify-content: space-between;
+  z-index: 9999;
 }

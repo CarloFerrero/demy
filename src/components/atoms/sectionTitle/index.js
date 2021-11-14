@@ -5,7 +5,10 @@ const SectionTitle = (props) => {
   return (
     <div>
       <div className="main">
-        <h2 className="sec-title">{props.title}</h2>
+        <div className="title-wrapper">
+          {props.icon}
+          <h2 className="sec-title">{props.title}</h2>
+        </div>
       </div>
     </div>
   );

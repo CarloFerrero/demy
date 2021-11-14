@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import Editor from "@monaco-editor/react";
+import { useHistory } from "react-router-dom";
 
 import { Form, Input, Button, Select, Cascader } from "antd";
 import "./style.css";
@@ -8,7 +9,8 @@ import "../../theme.css";
 //firestore
 import {
   collection,
-  addDoc,
+  updateDoc,
+  doc,
   serverTimestamp,
   query,
   orderBy,
@@ -19,13 +21,13 @@ import HeaderDev from "../../components/organism/headerDev";
 
 const { Option } = Select;
 
-const CodeEditor = () => {
+const CodeEditorSingle = (props) => {
   const editorRef = useRef(null);
-  const [Title, setTitle] = useState([]);
-  const [Colore, setColore] = useState([]);
-  const [ProjectID, setProjectID] = useState([]);
+  const [Title, setTitle] = useState(props.title);
+  const [Colore, setColore] = useState(props.color);
+  const [ProjectID, setProjectID] = useState(props.projectID);
   const [Progetti, setProgetti] = useState([]);
-  const [SubCategory, setSubCategory] = useState("");
+  const [SubCategory, setSubCategory] = useState(props.subcategory);
 
   useEffect(() => {
     const q = query(collection(db, "Progetti"), orderBy("timestamp", "asc"));
@@ -38,12 +40,19 @@ const CodeEditor = () => {
   function handleEditorDidMount(editor, monaco) {
     editorRef.current = editor;
   }
+
+  const history = useHistory();
+  const routeChange = (pat) => {
+    let path = pat;
+    history.push(path);
+  };
+
   const handleValue = async () => {
     const titolo = Title;
     const projectID = ProjectID;
     const colore = Colore;
     const code = editorRef.current.getValue();
-    const collectionRef = collection(db, SubCategory);
+    const documentRef = doc(db, SubCategory, props.id);
     const payload = {
       titolo,
       projectID,
@@ -51,7 +60,8 @@ const CodeEditor = () => {
       colore,
       timestamp: serverTimestamp(),
     };
-    await addDoc(collectionRef, payload);
+    await updateDoc(documentRef, payload);
+    await routeChange(`/${ProjectID}`);
   };
 
   const children = Progetti.map((item) => (
@@ -82,7 +92,7 @@ const CodeEditor = () => {
             height="83vh"
             width="73%"
             defaultLanguage="html"
-            defaultValue="// some comment"
+            defaultValue={props.code}
             onMount={handleEditorDidMount}
           />
           <Form id="form-dev" size="middle" layout="vertical">
@@ -92,6 +102,7 @@ const CodeEditor = () => {
                   <label className="label">Title</label>
                 </div>
                 <Input
+                  defaultValue={props.title}
                   onChange={(e) => {
                     setTitle(e.target.value);
                   }}
@@ -106,6 +117,7 @@ const CodeEditor = () => {
                   <Select
                     placeholder="Category"
                     onChange={handleChange}
+                    defaultValue={props.projectTitle}
                     autoClearSearchValue={true}
                     dropdownRender={(menu) => (
                       <div>
@@ -125,10 +137,11 @@ const CodeEditor = () => {
                 <div>
                   <Select
                     placeholder="Category"
+                    defaultValue={props.subcategory}
                     onChange={handleSubCategory}
                     autoClearSearchValue={true}
                   >
-                    <Option value="Campaign">Campaign</Option>
+                    <Option value="Campagne">Campagne</Option>
                     <Option value="Component">Component</Option>
                     <Option value="Layout">Layout</Option>
                   </Select>
@@ -139,7 +152,7 @@ const CodeEditor = () => {
               <Form.Item style={{ marginBottom: "0px" }}>
                 <div className="btnSave">
                   <Button type="primary" onClick={handleValue}>
-                    Salva
+                    Update
                   </Button>
                 </div>
               </Form.Item>
@@ -151,4 +164,4 @@ const CodeEditor = () => {
   );
 };
 
-export default CodeEditor;
+export default CodeEditorSingle;

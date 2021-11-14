@@ -15,34 +15,15 @@
   align-items: center;
 }
 
-/*Bullet color*/
-
-.giallo {
-  width: 10px;
-  height: 10px;
-  margin-right: 7px;
-  background-color: var(--maximumYellow);
-  border-radius: 100px;
+.ant-card-meta-title {
+  font-weight: 700;
+  color: #161616;
+  margin: 0px !important;
 }
-.rosso {
-  width: 10px;
-  height: 10px;
-  margin-right: 7px;
-  background-color: var(--red);
-  border-radius: 100px;
+.ant-card-meta-description {
+  color: #161616;
 }
-
-.verde {
-  width: 10px;
-  height: 10px;
-  margin-right: 7px;
-  background-color: var(--verdeAcqua);
-  border-radius: 100px;
-}
-.blu {
-  width: 10px;
-  height: 10px;
-  margin-right: 7px;
-  background-color: var(--steelBlue);
-  border-radius: 100px;
+.align-right {
+  display: flex;
+  justify-content: space-between;
 }

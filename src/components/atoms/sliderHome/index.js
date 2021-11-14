@@ -3,9 +3,9 @@ import { Carousel } from "antd";
 
 const SliderHome = () => {
   const contentStyle = {
-    height: "200px",
+    height: "40vh",
     color: "#fff",
-    lineHeight: "200px",
+    lineHeight: "40vh",
     textAlign: "center",
     background: "#191919",
   };

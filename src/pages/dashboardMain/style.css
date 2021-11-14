@@ -1,5 +1,5 @@
 .main {
-  padding: 0% 6% 0% 6%;
+  padding: 0% 4% 0% 4%;
 }
 .space {
   height: 20px;
@@ -14,7 +14,7 @@
 }
 .component-wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   column-gap: 20px;
 }
 .layout-wrapper {
@@ -23,8 +23,12 @@
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   column-gap: 20px;
   justify-content: space-between;
+  margin-bottom: 80px;
 }
-
+.icon-title {
+  font-size: 23px;
+  margin-right: 10px;
+}
 @media only screen and (max-width: 1200px) {
   .layout-wrapper {
     display: grid;
@@ -32,7 +36,7 @@
   }
   .component-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     column-gap: 20px;
   }
 }
@@ -43,7 +47,7 @@
   }
   .component-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     column-gap: 20px;
   }
   .project-wrapper {
@@ -59,7 +63,7 @@
   }
   .component-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     column-gap: 20px;
   }
   .project-wrapper {
@@ -75,7 +79,7 @@
   }
   .component-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     column-gap: 20px;
   }
   .project-wrapper {

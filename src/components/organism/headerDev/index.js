@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
-import Navbar from "../../atoms/navbar";
-import { Avatar } from "antd";
-import { UserOutlined, CaretDownOutlined } from "@ant-design/icons";
-const Header = () => {
+import { Avatar, Switch } from "antd";
+import { CaretDownOutlined, ArrowLeftOutlined } from "@ant-design/icons";
+
+const HeaderDev = (props) => {
+  const [editorTheme, seteditorTheme] = useState("light");
+  const changeTheme = () => {
+    const lightTheme = "light";
+    const darkTheme = "vs-dark";
+    if (editorTheme === darkTheme) {
+      seteditorTheme(lightTheme);
+    } else {
+      seteditorTheme("vs-dark");
+    }
+  };
+  props.changeTheme(editorTheme);
+
   return (
     <div className="header-container">
       <div className="logo-container">
@@ -12,10 +24,12 @@ const Header = () => {
           className="logo"
           alt="logo"
         />
-        <Navbar />
       </div>
 
       <div className="login-container">
+        <div className="mr15">
+          <Switch onClick={() => changeTheme()} />
+        </div>
         <div>
           <CaretDownOutlined />
           <span className="nav-link ml5">youngEto96</span>
@@ -28,4 +42,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderDev;
